@@ -1,3 +1,6 @@
+#### 1.2.0 May 11 2017 ####
+Support for Akka 1.2
+
 #### 1.1.1 July 18 2016 ####
 
 Support for Akka 1.1.1
