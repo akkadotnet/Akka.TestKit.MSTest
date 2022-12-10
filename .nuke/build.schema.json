@@ -18,17 +18,6 @@
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
         },
-        "DockerPassword": {
-          "type": "string",
-          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
-        },
-        "DockerRegistryUrl": {
-          "type": "string"
-        },
-        "DockerUsername": {
-          "type": "string",
-          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
-        },
         "Help": {
           "type": "boolean",
           "description": "Shows the help text for this build assembly"
@@ -98,23 +87,18 @@
             "enum": [
               "All",
               "AssemblyInfo",
-              "BuildDockerImages",
               "BuildRelease",
               "Clean",
               "Compile",
               "CreateNuget",
               "DocFx",
-              "Docker",
-              "DockerLogin",
               "DocsInit",
               "DocsMetadata",
               "Install",
               "NBench",
               "Nuget",
               "PublishCode",
-              "PublishDockerImages",
               "PublishNuget",
-              "PushImage",
               "Restore",
               "RunTests",
               "ServeDocs"
@@ -132,23 +116,18 @@
             "enum": [
               "All",
               "AssemblyInfo",
-              "BuildDockerImages",
               "BuildRelease",
               "Clean",
               "Compile",
               "CreateNuget",
               "DocFx",
-              "Docker",
-              "DockerLogin",
               "DocsInit",
               "DocsMetadata",
               "Install",
               "NBench",
               "Nuget",
               "PublishCode",
-              "PublishDockerImages",
               "PublishNuget",
-              "PushImage",
               "Restore",
               "RunTests",
               "ServeDocs"

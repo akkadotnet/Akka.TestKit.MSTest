@@ -20,15 +20,6 @@ using Nuke.Common.Utilities;
     EnableGitHubToken = true)
 ]
 
-[CustomGitHubActions("docker_build",
-    GitHubActionsImage.UbuntuLatest,
-    AutoGenerate = false,
-    OnPushBranches = new[] { "master", "dev" },
-    OnPullRequestBranches = new[] { "master", "dev" },
-    InvokedTargets = new[] { nameof(Docker) },
-    PublishArtifacts = true,
-    EnableGitHubToken = true)
-]
 [CustomGitHubActions("windows_release",
     GitHubActionsImage.WindowsLatest,
     OnPushTags = new[] { "*" },   
@@ -52,7 +43,7 @@ class CustomGitHubActionsAttribute : GitHubActionsAttribute
     {
         var job = base.GetJobs(image, relevantTargets);
         var newSteps = new List<GitHubActionsStep>(job.Steps);
-        foreach (var version in new[] { "7.0.*" })
+        foreach (var version in new[] { "6.0.*" })
         {
             newSteps.Insert(1, new GitHubActionsSetupDotNetStep
             {

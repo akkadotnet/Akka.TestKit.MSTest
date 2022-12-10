@@ -58,12 +58,6 @@ partial class Build : NukeBuild
 
     [Parameter] string SymbolsPublishUrl;
 
-    [Parameter] string DockerRegistryUrl;
-
-
-    [Parameter][Secret] string DockerUsername;
-    [Parameter][Secret] string DockerPassword;
-
     [Parameter] int Port = 8090;
     AbsolutePath Output => RootDirectory / "bin";
     AbsolutePath OutputNuget => Output / "nuget";
@@ -138,68 +132,6 @@ partial class Build : NukeBuild
                   .SetOutputDirectory(OutputNuget));
           }
       });
-    Target DockerLogin => _ => _
-        .Description("Docker login command")
-        .Requires(() => !DockerRegistryUrl.IsNullOrEmpty())
-        .Requires(() => !DockerPassword.IsNullOrEmpty())
-        .Requires(() => !DockerUsername.IsNullOrEmpty())
-        .Executes(() =>
-        {
-            var settings = new DockerLoginSettings()
-                .SetServer(DockerRegistryUrl)
-                .SetUsername(DockerUsername)
-                .SetPassword(DockerPassword);
-            DockerTasks.DockerLogin(settings);
-        });
-    Target BuildDockerImages => _ => _
-        .Description("Build docker image")
-        .DependsOn(PublishCode)
-        .Executes(() =>
-        {
-            var version = ReleaseNotes.Version;
-            var tagVersion = $"{version.Version.Major}.{version.Version.Minor}.{version.Version.Build}";
-            var dockfiles = GetDockerProjects();
-            foreach (var dockfile in dockfiles)
-            {
-                var image = $"{Directory.GetParent(dockfile).Name}".ToLower();
-                var tags = new List<string>
-                {
-                    $"{image}:latest",
-                    $"{image}:{tagVersion}"
-                };
-                if (!string.IsNullOrWhiteSpace(DockerRegistryUrl))
-                {
-                    tags.Add($"{DockerRegistryUrl}/{image}:latest");
-                    tags.Add($"{DockerRegistryUrl}/{tagVersion}");
-                }
-                var settings = new DockerBuildSettings()
-                 .SetFile(dockfile)
-                 .SetPath(Directory.GetParent(dockfile).FullName)
-                 .SetTag(tags.ToArray());
-                DockerTasks.DockerBuild(settings);
-            }
-        });
-    Target PushImage => _ => _
-        .Description("Push image to docker registry")
-        .Executes(() =>
-        {
-            var version = ReleaseNotes.Version;
-            var tagVersion = $"{version.Version.Major}.{version.Version.Minor}.{version.Version.Build}";
-            var dockfiles = GetDockerProjects();
-            foreach (var dockfile in dockfiles)
-            {
-                var image = $"{Directory.GetParent(dockfile).Name}".ToLower();
-                var settings = new DockerImagePushSettings()
-                    .SetName(string.IsNullOrWhiteSpace(DockerRegistryUrl) ? $"{image}:{tagVersion}" : $"{image}:{DockerRegistryUrl}/{tagVersion}");
-                DockerTasks.DockerImagePush(settings);
-            }
-        });
-
-    public Target Docker => _ => _
-    .DependsOn(BuildDockerImages);
-
-    public Target PublishDockerImages => _ => _
-    .DependsOn(DockerLogin, Docker, PushImage);
 
     Target PublishNuget => _ => _
     .Unlisted()

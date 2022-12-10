@@ -14,4 +14,8 @@
     <PackageReference Include="Nuke.Common" Version="6.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="..\.github\workflows\docker_build.yml" />
+  </ItemGroup>
+
 </Project>
