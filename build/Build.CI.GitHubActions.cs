@@ -17,7 +17,7 @@ using Nuke.Common.Utilities;
     OnPullRequestBranches = new[] { "master", "dev" },
     InvokedTargets = new[] { nameof(All) },
     PublishArtifacts = true,
-    EnableGitHubToken = true)
+    EnableGitHubToken = false)
 ]
 
 [CustomGitHubActions("windows_release",
