@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Maintainers of NUKE.
+// Copyright 2021 Maintainers of NUKE.
 // Distributed under the MIT License.
 // https://github.com/nuke-build/nuke/blob/master/LICENSE
 
@@ -58,6 +58,14 @@ class CustomGitHubActionsAttribute : GitHubActionsAttribute
         {
             File = "build.sh"
         });
+        newSteps.Insert(5, new CheckFormat
+        {
+            //File = "build.sh"
+        });
+        newSteps.Insert(7, new Coveralls
+        {
+            //File = "build.sh"
+        });
         job.Steps = newSteps.ToArray();
         return job;
     }
@@ -92,6 +100,42 @@ class GitHubActionsSetupChmod : GitHubActionsStep
         using (writer.Indent())
         {
             writer.WriteLine($"run: chmod +x ./{File}");
+        }
+    }
+}
+
+class CheckFormat : GitHubActionsStep
+{
+    public string File { get; init; }
+
+    public override void Write(CustomFileWriter writer)
+    {
+        writer.WriteLine($"- name: Check format");
+        using (writer.Indent())
+        {
+            writer.WriteLine($"if: matrix.os == 'ubuntu-latest'");
+            writer.WriteLine($"run: dotnet format --verify-no-changes --verbosity diagnostic");
+        }
+    }
+}
+
+class Coveralls : GitHubActionsStep
+{
+    public string Version { get; init; }
+
+    public override void Write(CustomFileWriter writer)
+    {
+        writer.WriteLine("- name: Coveralls");
+        using (writer.Indent())
+        {
+
+            writer.WriteLine("if: matrix.os == 'ubuntu-latest'");
+            writer.WriteLine("uses: coverallsapp/github-action@master");
+            writer.WriteLine("with:");
+            using (writer.Indent())
+            {
+                writer.WriteLine($"github-token: ${{ secrets.GITHUB_TOKEN }}");
+            }
         }
     }
 }

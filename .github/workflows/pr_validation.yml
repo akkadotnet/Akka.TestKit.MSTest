@@ -46,10 +46,16 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
+      - name: Check format
+        if: matrix.os == 'ubuntu-latest'
+        run: dotnet format --verify-no-changes --verbosity diagnostic
       - name: Run './build.cmd All'
         run: ./build.cmd All
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coveralls
+        if: matrix.os == 'ubuntu-latest'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${ secrets.GITHUB_TOKEN }
   ubuntu-latest:
     name: ubuntu-latest
     runs-on: ubuntu-latest
@@ -69,5 +75,13 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
+      - name: Check format
+        if: matrix.os == 'ubuntu-latest'
+        run: dotnet format --verify-no-changes --verbosity diagnostic
       - name: Run './build.cmd All'
         run: ./build.cmd All
+      - name: Coveralls
+        if: matrix.os == 'ubuntu-latest'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${ secrets.GITHUB_TOKEN }
