@@ -28,7 +28,6 @@ using Project = Nuke.Common.ProjectModel.Project;
 using System.Threading.Tasks;
 using Nuke.Common.Tools.MSBuild;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
-using Microsoft.Build.Evaluation;
 
 
 [ShutdownDotNetAfterServerBuild]
@@ -225,17 +224,33 @@ partial class Build : NukeBuild
         .DependsOn(Compile)
         .Executes(() =>
         {
-            var project = Solution.GetProjects("*.Tests").ToList().First().ToString();
-            Information($"Running for {project} (6.0) ...");
-            DotNetTest(c => c
-                   .SetProjectFile(project)
-                   .SetConfiguration(Configuration.ToString())
-                   //.SetFramework("6.0.*")
-                   .SetResultsDirectory(OutputTests)
-                   .SetProcessWorkingDirectory(Directory.GetParent(project).FullName)
-                   .SetLoggers("trx")
-                   .SetVerbosity(verbosity: DotNetVerbosity.Normal)
-                   .EnableNoBuild());
+            IEnumerable<Project> GetProjects()
+            {
+                // if you need to filter tests by environment, do it here.
+                if (EnvironmentInfo.IsWin)
+                    return Solution.GetProjects("*.Tests");
+                else
+                    return Solution.GetProjects("*.Tests");
+            }
+
+            var projects = GetProjects();
+            foreach (var project in projects)
+            {
+                Information($"Running tests from {project}");
+                foreach (var fw in project.GetTargetFrameworks())
+                {
+                    Information($"Running for {project} ({fw}) ...");
+                    DotNetTest(c => c
+                           .SetProjectFile(project)
+                           .SetConfiguration(Configuration.ToString())
+                           .SetFramework(fw)
+                           .SetResultsDirectory(OutputTests)
+                           .SetProcessWorkingDirectory(Directory.GetParent(project).FullName)
+                           .SetLoggers("trx")
+                           .SetVerbosity(verbosity: DotNetVerbosity.Normal)
+                           .EnableNoBuild());
+                }
+            }
         });
 
     Target Nuget => _ => _
