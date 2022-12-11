@@ -1,0 +1,24 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 17.4.0s
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.2.10
+  - dependency-name: MSTest.TestFramework
+    versions:
+    - 2.2.10    
+  - dependency-name: FluentAssertions
+    versions:
+    - 6.8.0   
+  - dependency-name: coverlet.collector
+    versions:
+    - 3.2.0
