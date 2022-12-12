@@ -1,6 +1,5 @@
 //-----------------------------------------------------------------------
 // <copyright file="AssertionsTests.cs" company="Akka.NET Project">
-//     Copyright (C) 2009-2022 Typesafe Inc. <http://www.typesafe.com>
 //     Copyright (C) 2013-2022 Akka.NET project <https://github.com/akkadotnet/akka.net>
 // </copyright>
 //-----------------------------------------------------------------------
