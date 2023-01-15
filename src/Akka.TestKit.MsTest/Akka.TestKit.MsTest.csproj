@@ -9,4 +9,8 @@
     <PackageReference Include="Akka.TestKit" Version="1.4.48" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FluentAssertions" Version="6.9.0" />
+  </ItemGroup>
+
 </Project>
