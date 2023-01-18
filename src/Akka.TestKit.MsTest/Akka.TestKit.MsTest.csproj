@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>$(LibraryFramework)</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <Description>MSTest support for the Akka.NET Testkit.</Description>
+    <PackageTags>akka;testkit;mstest;akka.net;akkadotnet</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
