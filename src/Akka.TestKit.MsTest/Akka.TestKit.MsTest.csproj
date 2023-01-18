@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Akka.TestKit" Version="$(AkkaVersion)" />
-    <PackageReference Include="Microsoft.VisualStudio.TestPlatform" Version="14.0.0" />
     <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
   </ItemGroup>
 
