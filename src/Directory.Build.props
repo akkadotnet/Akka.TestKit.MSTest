@@ -215,6 +215,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)\..\README.md" Pack="true" Visible="false" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\..\akkalogo.png" Pack="true" Visible="false" PackagePath="\" />
 	</ItemGroup>
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
@@ -228,4 +229,16 @@
 	    <AkkaVersion>1.4.48</AkkaVersion>
 	    <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
   	</PropertyGroup>
+  <!-- SourceLink support for all Akka.NET projects -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/akkadotnet/Akka.TestKit.MSTest/</RepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 </Project>
