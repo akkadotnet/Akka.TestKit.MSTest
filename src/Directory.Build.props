@@ -2,8 +2,10 @@
 	<PropertyGroup>
 		<Copyright>Copyright © 2013-2023 Akka.NET Team</Copyright>
 		<Authors>Akka.NET Team</Authors>
-		<VersionPrefix>0.0.1</VersionPrefix>
-		<PackageReleaseNotes>- Fixed bugs</PackageReleaseNotes>
+		<VersionPrefix>1.4.48</VersionPrefix>
+		<PackageReleaseNotes>- Migrated from VSTest to MSTest
+- Upgraded to Akka.NET v1.4.48
+- Targeted `netstandard2.0`</PackageReleaseNotes>
 		<PackageIcon>akkalogo.png</PackageIcon>
 		<PackageProjectUrl>
 			https://github.com/akkadotnet/Akka.TestKit.MSTest
