@@ -31,16 +31,16 @@ jobs:
     name: windows-latest
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Make build.sh executable
         run: chmod +x ./build.sh
       - name: Make build.cmd executable
         run: chmod +x ./build.cmd
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.*
+          dotnet-version: 7.0.*
       - name: Cache .nuke/temp, ~/.nuget/packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             .nuke/temp
@@ -60,16 +60,16 @@ jobs:
     name: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Make build.sh executable
         run: chmod +x ./build.sh
       - name: Make build.cmd executable
         run: chmod +x ./build.cmd
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.*
+          dotnet-version: 7.0.*
       - name: Cache .nuke/temp, ~/.nuget/packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             .nuke/temp
@@ -77,12 +77,9 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
       - name: Check format
         if: matrix.os == 'ubuntu-latest'
-        run: |
-          dotnet format --verify-no-changes --verbosity diagnostic
-      - name: Test
-        run: |
-          find tests -name *.csproj | xargs -I % dotnet add % package coverlet.msbuild
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=${GITHUB_WORKSPACE}/coverage/lcov
+        run: dotnet format --verify-no-changes --verbosity diagnostic
+      - name: Run './build.cmd All'
+        run: ./build.cmd All
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest'
         uses: coverallsapp/github-action@master
