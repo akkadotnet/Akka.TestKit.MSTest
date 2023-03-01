@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 	<PropertyGroup>
 		<Copyright>Copyright © 2013-2023 Akka.NET Team</Copyright>
 		<Authors>Akka.NET Team</Authors>
@@ -227,8 +227,8 @@
 	    <LibraryFramework>netstandard2.0</LibraryFramework>
 	    <TestFramework>net7.0</TestFramework>
 	    <MSTestVersion>3.0.2</MSTestVersion>
-	    <TestSdkVersion>17.4.1</TestSdkVersion>
-	    <AkkaVersion>1.4.49</AkkaVersion>
+	    <TestSdkVersion>17.5.0</TestSdkVersion>
+	    <AkkaVersion>1.5.0-beta4</AkkaVersion>
 	    <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
   	</PropertyGroup>
   <!-- SourceLink support for all Akka.NET projects -->
