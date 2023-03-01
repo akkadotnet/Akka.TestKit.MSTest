@@ -229,7 +229,7 @@
 	    <MSTestVersion>3.0.2</MSTestVersion>
 	    <TestSdkVersion>17.5.0</TestSdkVersion>
 	    <AkkaVersion>1.5.0-beta6</AkkaVersion>
-	    <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
+	    <FluentAssertionsVersion>6.10.0</FluentAssertionsVersion>
   	</PropertyGroup>
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>
