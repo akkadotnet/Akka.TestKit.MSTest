@@ -11,7 +11,7 @@ namespace Akka.TestKit.MsTest.Tests
     [TestClass]
     public class AssertionsTests
     {
-        private MsTestAssertions _assertions;
+        private MsTestAssertions? _assertions;
 
         [TestInitialize]
         public void SetUp()
@@ -23,33 +23,33 @@ namespace Akka.TestKit.MsTest.Tests
         [ExpectedException(typeof(AssertFailedException))]
         public void Fail_should_throw()
         {
-            _assertions.Fail();
+            _assertions!.Fail();
         }
 
         [TestMethod]
         [ExpectedException(typeof(AssertFailedException))]
         public void AssertTrue_should_throw_on_false()
         {
-            _assertions.AssertTrue(false);
+            _assertions!.AssertTrue(false);
         }
 
         [TestMethod]
         public void AssertTrue_should_succeed_on_true()
         {
-            _assertions.AssertTrue(true);
+            _assertions!.AssertTrue(true);
         }
 
         [TestMethod]
         [ExpectedException(typeof(AssertFailedException))]
         public void AssertFalse_should_throw_on_true()
         {
-            _assertions.AssertFalse(true);
+            _assertions!.AssertFalse(true);
         }
 
         [TestMethod]
         public void AssertFalse_should_succeed_on_false()
         {
-            _assertions.AssertFalse(false);
+            _assertions!.AssertFalse(false);
         }
 
 
@@ -57,13 +57,13 @@ namespace Akka.TestKit.MsTest.Tests
         [ExpectedException(typeof(AssertFailedException))]
         public void AssertEqual_should_throw_on_not_equal()
         {
-            _assertions.AssertEqual(42, 4711);
+            _assertions!.AssertEqual(42, 4711);
         }
 
         [TestMethod]
         public void AssertEqual_should_succeed_on_equal()
         {
-            _assertions.AssertEqual(42, 42);
+            _assertions!.AssertEqual(42, 42);
         }
 
 
@@ -71,13 +71,13 @@ namespace Akka.TestKit.MsTest.Tests
         [ExpectedException(typeof(AssertFailedException))]
         public void AssertEqualWithComparer_should_throw_on_not_equal()
         {
-            _assertions.AssertEqual(42, 42,(x,y)=>false);
+            _assertions!.AssertEqual(42, 42,(x,y)=>false);
         }
 
         [TestMethod]
         public void AssertEqualWithComparer_should_succeed_on_equal()
         {
-            _assertions.AssertEqual(42, 4711,(x,y)=>true);
+            _assertions!.AssertEqual(42, 4711,(x,y)=>true);
         }
 
     }
