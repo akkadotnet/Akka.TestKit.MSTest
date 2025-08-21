@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="$(FluentAssertionsVersion)" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
