@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Akka.TestKit.MsTest
@@ -36,9 +37,29 @@ namespace Akka.TestKit.MsTest
         }
 
         public void AssertEqual<T>(T expected, T actual, Func<T, T, bool> comparer, string format = "", params object[] args)
-        {            
+        {
             if(!comparer(expected, actual))
                 throw new AssertFailedException(string.Format("Assert.AreEqual failed. Expected [{0}]. Actual [{1}]. {2}", FormatValue(expected), FormatValue(actual), string.Format(format,args)));
+        }
+
+        public Exception AssertThrows(Action action)
+        {
+            return Assert.Throws<Exception>(action);
+        }
+
+        public TException AssertThrows<TException>(Action action) where TException : Exception
+        {
+            return Assert.ThrowsExactly<TException>(action);
+        }
+
+        public Task<Exception> AssertThrowsAsync(Func<Task> action)
+        {
+            return Assert.ThrowsAsync<Exception>(action);
+        }
+
+        public Task<TException> AssertThrowsAsync<TException>(Func<Task> action) where TException : Exception
+        {
+            return Assert.ThrowsExactlyAsync<TException>(action);
         }
 
         private static string FormatValue<T>(T expected)
