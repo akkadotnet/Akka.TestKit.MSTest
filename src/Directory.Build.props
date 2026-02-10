@@ -228,7 +228,7 @@
 	    <TestFramework>net7.0</TestFramework>
 	    <MSTestVersion>3.0.2</MSTestVersion>
 	    <TestSdkVersion>17.5.0</TestSdkVersion>
-	    <AkkaVersion>1.5.47</AkkaVersion>
+	    <AkkaVersion>1.5.60</AkkaVersion>
   	</PropertyGroup>
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>
