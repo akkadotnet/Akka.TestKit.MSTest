@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka.TestKit" Version="$(AkkaVersion)" />
-    <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
+    <PackageReference Include="Akka.TestKit" />
+    <PackageReference Include="MSTest.TestFramework" />
   </ItemGroup>
 
 </Project>
