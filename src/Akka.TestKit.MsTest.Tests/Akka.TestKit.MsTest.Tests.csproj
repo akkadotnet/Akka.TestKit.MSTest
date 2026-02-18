@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
-    <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
-    <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
-    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="MSTest.TestFramework" />
+    <PackageReference Include="MSTest.TestAdapter" />
+    <PackageReference Include="coverlet.collector" />
   </ItemGroup>
 
 </Project>

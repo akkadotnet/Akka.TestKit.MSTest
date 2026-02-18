@@ -1,0 +1,39 @@
+<Project>
+  <PropertyGroup>
+    <Copyright>Copyright © 2015-$([System.DateTime]::Now.Year) Akka.NET Team</Copyright>
+    <Authors>Akka.NET Team</Authors>
+    <VersionPrefix>1.4.48</VersionPrefix>
+    <PackageReleaseNotes>- Migrated from VSTest to MSTest
+      - Upgraded to Akka.NET v1.4.48
+      - Targeted `netstandard2.0`</PackageReleaseNotes>
+    <PackageIcon>akkalogo.png</PackageIcon>
+    <PackageProjectUrl>
+			https://github.com/akkadotnet/Akka.TestKit.MSTest
+		</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" Visible="false" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)\akkalogo.png" Pack="true" Visible="false" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <LibraryFramework>netstandard2.0</LibraryFramework>
+    <TestFramework>net8.0</TestFramework>
+  </PropertyGroup>
+
+  <!-- SourceLink support for all Akka.NET projects -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+  </ItemGroup>
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/akkadotnet/Akka.TestKit.MSTest/</RepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+</Project>
