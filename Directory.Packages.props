@@ -3,19 +3,31 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <!-- Nuget package versions -->
     <AkkaVersion>1.5.60</AkkaVersion>
-    <MSTestVersion>3.0.2</MSTestVersion>
+    <MSTestVersion>3.10.0</MSTestVersion>
+    <MSTest4Version>4.1.0</MSTest4Version>
     <TestSdkVersion>17.5.0</TestSdkVersion>
   </PropertyGroup>
   <!-- App dependencies -->
   <ItemGroup>
     <PackageVersion Include="Akka.TestKit" Version="$(AkkaVersion)" />
+  </ItemGroup>
+  <!-- MSTest: 3.x for < net8.0, 4.x for net8.0+ -->
+  <ItemGroup Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
     <PackageVersion Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
+  </ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <PackageVersion Include="MSTest.TestFramework" Version="$(MSTest4Version)" />
   </ItemGroup>
   <!-- Test dependencies -->
   <ItemGroup>
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
-    <PackageVersion Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <PackageVersion Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
+  </ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <PackageVersion Include="MSTest.TestAdapter" Version="$(MSTest4Version)" />
   </ItemGroup>
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>

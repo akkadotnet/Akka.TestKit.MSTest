@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(LibraryFramework)</TargetFramework>
+    <TargetFrameworks>$(LibraryFramework)</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <Description>MSTest support for the Akka.NET Testkit.</Description>
     <PackageTags>akka;testkit;mstest;akka.net;akkadotnet</PackageTags>
