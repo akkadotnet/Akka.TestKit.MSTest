@@ -14,7 +14,6 @@
   <!-- Test dependencies -->
   <ItemGroup>
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
-    <PackageVersion Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
     <PackageVersion Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
   </ItemGroup>
