@@ -20,17 +20,15 @@ namespace Akka.TestKit.MsTest.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void Fail_should_throw()
         {
-            _assertions!.Fail();
+            Assert.ThrowsExactly<AssertFailedException>(() => _assertions!.Fail());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void AssertTrue_should_throw_on_false()
         {
-            _assertions!.AssertTrue(false);
+            Assert.ThrowsExactly<AssertFailedException>(() => _assertions!.AssertTrue(false));
         }
 
         [TestMethod]
@@ -40,10 +38,9 @@ namespace Akka.TestKit.MsTest.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void AssertFalse_should_throw_on_true()
         {
-            _assertions!.AssertFalse(true);
+            Assert.ThrowsExactly<AssertFailedException>(() => _assertions!.AssertFalse(true));
         }
 
         [TestMethod]
@@ -54,10 +51,9 @@ namespace Akka.TestKit.MsTest.Tests
 
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void AssertEqual_should_throw_on_not_equal()
         {
-            _assertions!.AssertEqual(42, 4711);
+            Assert.ThrowsExactly<AssertFailedException>(() => _assertions!.AssertEqual(42, 4711));
         }
 
         [TestMethod]
@@ -68,10 +64,9 @@ namespace Akka.TestKit.MsTest.Tests
 
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void AssertEqualWithComparer_should_throw_on_not_equal()
         {
-            _assertions!.AssertEqual(42, 42,(x,y)=>false);
+            Assert.ThrowsExactly<AssertFailedException>(() => _assertions!.AssertEqual(42, 42, (x, y) => false));
         }
 
         [TestMethod]

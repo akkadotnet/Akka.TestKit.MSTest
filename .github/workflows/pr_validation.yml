@@ -29,6 +29,11 @@ jobs:
         with:
           global-json-file: "./global.json"
 
+      - name: "Install .NET 6 SDK"
+        uses: actions/setup-dotnet@v4.3.1
+        with:
+          dotnet-version: '6.x'
+
       - name: "Restore .NET tools"
         run: dotnet tool restore
 
@@ -64,6 +69,11 @@ jobs:
         uses: actions/setup-dotnet@v4.3.1
         with:
           global-json-file: "./global.json"
+
+      - name: "Install .NET 6 SDK"
+        uses: actions/setup-dotnet@v4.3.1
+        with:
+          dotnet-version: '6.x'
 
       - name: "Restore .NET tools"
         run: dotnet tool restore
