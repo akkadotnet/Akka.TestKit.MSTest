@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <!-- Nuget package versions -->
-    <AkkaVersion>1.5.60</AkkaVersion>
+    <AkkaVersion>1.5.67</AkkaVersion>
     <MSTestVersion>3.10.0</MSTestVersion>
     <MSTest4Version>4.1.0</MSTest4Version>
     <TestSdkVersion>17.5.0</TestSdkVersion>
