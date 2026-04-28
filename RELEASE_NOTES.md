@@ -1,3 +1,7 @@
+#### 1.5.67 April 28th 2026 ####
+- Upgraded to [Akka.NET v1.5.67](https://github.com/akkadotnet/akka.net/releases/tag/1.5.67)
+- Implemented new `ITestKitAssertions.AssertThrows`/`AssertThrowsAsync` members (generic and non-generic) on `MsTestAssertions`
+
 #### 1.5.60 February 18th 2026 ####
 - Upgraded to [Akka.NET v1.5.60](https://github.com/akkadotnet/akka.net/releases/tag/1.5.60)
 - Added dual targeting for `netstandard2.0` and `net8.0`
