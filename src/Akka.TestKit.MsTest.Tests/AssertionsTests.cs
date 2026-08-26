@@ -4,8 +4,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace Akka.TestKit.MsTest.Tests
 {
     [TestClass]

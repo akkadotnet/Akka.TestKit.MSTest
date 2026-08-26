@@ -6,7 +6,6 @@
 
 using Akka.Actor;
 using Akka.TestKit.TestActors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Akka.TestKit.MsTest.Tests
 {

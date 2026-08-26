@@ -46,65 +46,13 @@ namespace Akka.TestKit.MsTest
             return ReferenceEquals(expected, null) ? "null" : expected.ToString();
         }
 
-        public Exception AssertThrows(Action action)
-        {
-            try
-            {
-                action();
-            }
-            catch (Exception ex)
-            {
-                return ex;
-            }
-            throw new AssertFailedException("Expected an exception to be thrown, but no exception was thrown.");
-        }
+        public Exception AssertThrows(Action action) => Assert.Throws<Exception>(action);
 
-        public TException AssertThrows<TException>(Action action) where TException : Exception
-        {
-            try
-            {
-                action();
-            }
-            catch (TException ex)
-            {
-                return ex;
-            }
-            catch (Exception ex)
-            {
-                throw new AssertFailedException($"Expected exception of type {typeof(TException)} but got {ex.GetType()}: {ex.Message}");
-            }
-            throw new AssertFailedException($"Expected exception of type {typeof(TException)}, but no exception was thrown.");
-        }
+        public TException AssertThrows<TException>(Action action) where TException : Exception => Assert.ThrowsExactly<TException>(action);
 
-        public async Task<Exception> AssertThrowsAsync(Func<Task> action)
-        {
-            try
-            {
-                await action();
-            }
-            catch (Exception ex)
-            {
-                return ex;
-            }
-            throw new AssertFailedException("Expected an exception to be thrown, but no exception was thrown.");
-        }
+        public async Task<Exception> AssertThrowsAsync(Func<Task> action) => await Assert.ThrowsAsync<Exception>(action);
 
-        public async Task<TException> AssertThrowsAsync<TException>(Func<Task> action) where TException : Exception
-        {
-            try
-            {
-                await action();
-            }
-            catch (TException ex)
-            {
-                return ex;
-            }
-            catch (Exception ex)
-            {
-                throw new AssertFailedException($"Expected exception of type {typeof(TException)} but got {ex.GetType()}: {ex.Message}");
-            }
-            throw new AssertFailedException($"Expected exception of type {typeof(TException)}, but no exception was thrown.");
-        }
+        public async Task<TException> AssertThrowsAsync<TException>(Func<Task> action) where TException : Exception => await Assert.ThrowsExactlyAsync<TException>(action);
     }
 }
 
